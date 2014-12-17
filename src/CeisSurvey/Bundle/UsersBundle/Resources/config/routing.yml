@@ -1,0 +1,3 @@
+survey_homepage:
+    path:     /home/
+    defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:index}

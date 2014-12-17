@@ -1,0 +1,8 @@
+girish_crud:
+    resource: "@GirishCrudBundle/Resources/config/routing.yml"
+    prefix:   /
+
+survey_users:
+    resource: "@CeisSurveyUsersBundle/Resources/config/routing.yml"
+    prefix:   /survey/
+

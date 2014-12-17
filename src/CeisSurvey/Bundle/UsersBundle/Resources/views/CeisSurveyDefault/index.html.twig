@@ -1,0 +1,38 @@
+{% extends '::base.html.twig'%}
+
+{% block body %}
+    <div class="container">
+        
+            <div class="header">
+                <nav>
+                    <ul class="nav nav-pills pull-left">
+                        <li role="utilisateur" class="active"><a href="#">Utilisateur</a></li>
+                        <li role="questionnaire"><a href="#">Questionnaire</a></li>
+                    </ul>
+                </nav>
+             
+            </div>
+            
+        
+        <br><br><br><br>
+        
+        <div class="jumbotron">
+      
+            {{ form_start(myForm)}}
+            {{ form_errors(myForm)}}
+
+
+            {{ form_label(myForm.username)}}
+            {{ form_errors(myForm.username)}}
+            {{ form_widget(myForm.username)}}
+
+
+
+            {{ form_label(myForm.password)}}
+            {{ form_errors(myForm.password)}}
+            {{ form_widget(myForm.password)}}
+
+            {{ form_end(myForm)}}
+        </div>
+    </div>
+{% endblock %}
