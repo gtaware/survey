@@ -1,29 +1,42 @@
 <!DOCTYPE html>  
 <html>  
-<head>  
-    <title>{% block title %}Owl Survey{% endblock %}  </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
-    <!-- Bootstrap -->  
- 
-    {% block stylesheets %}  
-         <link href="{{ asset('bundles/ceissurveyusers/css/bootstrap.css') }}" type="text/css" rel="stylesheet">  
-        {% stylesheets '@bootstrap_less' combine=true %}  
-            <link href="{{ asset_url }}" type="text/css" rel="stylesheet">  
-        {% endstylesheets %}  
-    {% endblock %}  
-  
-</head>  
+    <head>  
+        <title>{% block title %}Owl Survey{% endblock %}  </title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+        <!-- Bootstrap -->  
 
-<body>
-   
-    {% block body %}
-     
-    {% endblock %}  
-  
-    {% block javascripts %}  
-        {% javascripts '@jquery_js' '@bootstrap_js' filter='?yui_js' combine=true %}  
+        {% block stylesheets %}  
+            <link href="{{ asset('bundles/ceissurveyusers/css/bootstrap.css') }}" type="text/css" rel="stylesheet">  
+            {% stylesheets '@bootstrap_less' combine=true %}  
+            <link href="{{ asset_url }}" type="text/css" rel="stylesheet">  
+            {% endstylesheets %}  
+        {% endblock %}  
+    </head>  
+
+    <body>
+        <div class="container">
+            <div class="row well">
+                {% block body %}
+
+                    <div class="header">
+                        <nav>
+                            <ul class="nav nav-pills pull-left">
+                                <li role="utilisateur" class="active"><a href="#">Utilisateur</a></li>
+                                <li role="questionnaire"><a href="#">Questionnaire</a></li>
+                            </ul>
+                        </nav>
+                        <br><br><br><br>
+                    </div>
+
+                    {% block form %}  {% endblock %} 
+
+                {% endblock %}  
+            </div>
+        </div>
+        {% block javascripts %}  
+            {% javascripts '@jquery_js' '@bootstrap_js' filter='?yui_js' combine=true %}  
             <script src="{{ asset_url }}"></script>  
-        {% endjavascripts %}  
-    {% endblock %}  
-</body>  
+            {% endjavascripts %}  
+        {% endblock %}  
+    </body>  
 </html> 
