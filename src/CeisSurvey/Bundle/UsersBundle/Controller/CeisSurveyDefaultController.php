@@ -13,8 +13,9 @@ class CeisSurveyDefaultController extends Controller {
 
     public function indexAction(Request $request) {
         
-        $form = $this->get('ceissurvey.usersbundle.services.userservice')->index($request);      
-        return $this->render('CeisSurveyUsersBundle:CeisSurveyDefault:index.html.twig', array('myForm' => $form->createView()));
+        return $this->get('ceissurvey.usersbundle.services.userservice')->index($request);      
+        
+        //return $this->render('CeisSurveyUsersBundle:CeisSurveyDefault:index.html.twig', array('myForm' => $form->createView()));
     }
 
     public function createUserAction() {
@@ -38,7 +39,7 @@ class CeisSurveyDefaultController extends Controller {
     }
 
     public function getUserAction($id) {
-        
+       
         return $this->get('ceissurvey.usersbundle.services.userservice')->serviceGetUser($id);
     }
     

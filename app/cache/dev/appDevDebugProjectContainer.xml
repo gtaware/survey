@@ -556,6 +556,9 @@
     </parameter>
   </parameters>
   <services>
+    <service id="ceissurvey.usersbundle.services.userservice" class="CeisSurvey\Bundle\UsersBundle\Services\UserService">
+      <argument type="service" id="service_container"/>
+    </service>
     <service id="twig.extension.debug" class="Twig_Extension_Debug">
       <tag name="twig.extension"/>
     </service>

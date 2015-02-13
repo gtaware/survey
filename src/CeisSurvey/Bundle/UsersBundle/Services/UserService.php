@@ -21,15 +21,13 @@ class UserService
         if ($form->isValid()) {
             $newUser = $form->getData();
             $newUser->setIsAdmin('No');
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->container->get('doctrine')->getManager();
             $em->persist($newUser);
             $em->flush();
-            return new Response("Added a new user. <br> id = " . $newUser->getId());
-            die;
-            return $this->redirect($this->generateUrl('survey_createUser'));
+            //return new Response('Added a new user ');
+            $this->container->get('router')->generate('survey_createUser');
         }
-        
-        return $form;
+        return $this->container->get('templating')->renderResponse('CeisSurveyUsersBundle:CeisSurveyDefault:index.html.twig', array('myForm' => $form->createView()));
     }
     
     public function serviceGetUser($id) {

@@ -47,6 +47,7 @@ class appDevDebugProjectContainer extends Container
             'assetic.value_supplier.default' => 'getAssetic_ValueSupplier_DefaultService',
             'cache_clearer' => 'getCacheClearerService',
             'cache_warmer' => 'getCacheWarmerService',
+            'ceissurvey.usersbundle.services.userservice' => 'getCeissurvey_Usersbundle_Services_UserserviceService',
             'controller_name_converter' => 'getControllerNameConverterService',
             'data_collector.request' => 'getDataCollector_RequestService',
             'data_collector.router' => 'getDataCollector_RouterService',
@@ -447,6 +448,19 @@ class appDevDebugProjectContainer extends Container
         $c = new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplateFinder($a, $b, (dirname(dirname(__DIR__)).'/Resources'));
 
         return $this->services['cache_warmer'] = new \Symfony\Component\HttpKernel\CacheWarmer\CacheWarmerAggregate(array(0 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\TemplatePathsCacheWarmer($c, $this->get('templating.locator')), 1 => new \Symfony\Bundle\AsseticBundle\CacheWarmer\AssetManagerCacheWarmer($this), 2 => new \Symfony\Bundle\FrameworkBundle\CacheWarmer\RouterCacheWarmer($this->get('router')), 3 => new \Symfony\Bundle\TwigBundle\CacheWarmer\TemplateCacheCacheWarmer($this, $c), 4 => new \Symfony\Bridge\Doctrine\CacheWarmer\ProxyCacheWarmer($this->get('doctrine'))));
+    }
+
+    /**
+     * Gets the 'ceissurvey.usersbundle.services.userservice' service.
+     *
+     * This service is shared.
+     * This method always returns the same instance of the service.
+     *
+     * @return \CeisSurvey\Bundle\UsersBundle\Services\UserService A CeisSurvey\Bundle\UsersBundle\Services\UserService instance.
+     */
+    protected function getCeissurvey_Usersbundle_Services_UserserviceService()
+    {
+        return $this->services['ceissurvey.usersbundle.services.userservice'] = new \CeisSurvey\Bundle\UsersBundle\Services\UserService($this);
     }
 
     /**
