@@ -1,4 +1,4 @@
 services:
-    ceis_survey.usersbundle.services.users:
+    ceissurvey.usersbundle.services.userservice:
         class: CeisSurvey\Bundle\UsersBundle\Services\UserService
         arguments: ["@service_container"]

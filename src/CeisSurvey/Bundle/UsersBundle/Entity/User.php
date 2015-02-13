@@ -35,7 +35,15 @@ class User
      */
     private $lname;
 
-    /**
+    
+     /**
+     * @var string
+     *
+     * @ORM\Column(name="gender", type="string", length=10)
+     */
+    private $gender;
+    
+     /**
      * @var string
      *
      * @ORM\Column(name="function", type="string", length=100)
@@ -103,6 +111,30 @@ class User
     {
         return $this->fname;
     }
+
+    /**
+     * Set gender
+     *
+     * @param string $gender
+     * @return User
+     */
+    public function setGender($gender)
+    {
+        $this->gender = $gender;
+    
+        return $this;
+    }
+
+    /**
+     * Get gender
+     *
+     * @return string 
+     */
+    public function getGender()
+    {
+        return $this->gender;
+    }
+
 
     /**
      * Set lname

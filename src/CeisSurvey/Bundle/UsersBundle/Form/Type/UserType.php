@@ -24,6 +24,13 @@ class UserType extends AbstractType {
             ->add('lname', 'text', array(
                 'attr' => array('maxlength' => 20)
             ))
+            ->add('gender', 'choice', array(
+                'choices' => array(
+                    'Male' => 'Male',
+                    'Female' => 'Female',
+                    'Others' => 'Others',
+                    ),
+            ))
             ->add('function', 'text', array(
                 'attr' => array('maxlength' => 50)
             ))
