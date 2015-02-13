@@ -7,40 +7,19 @@ use CeisSurvey\Bundle\UsersBundle\Entity\User;
 use CeisSurvey\Bundle\UsersBundle\Form\Type\UserType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CeisSurveyDefaultController extends Controller {
 
     public function indexAction(Request $request) {
-
-        $user = new User();
-        //Temparary data
-        //$user->setUsername('gtaware');    
         
-        $form = $this->createForm(new UserType(), $user);
- 
-        $form->handleRequest($request);
-
-        if ($form->isValid()) {
-            $newUser = $form->getData();
-            $newUser->setIsAdmin('No');
-            
-            /*echo "<pre>";
-            print_r($newUser);
-            die; 
-             * 
-             */
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($newUser);
-            $em->flush();
-            return new Response("Added a new user. <br> id = " . $newUser->getId());
-            die;
-            return $this->redirect($this->generateUrl('survey_createUser'));
-        }
+        $form = $this->get('ceissurvey.usersbundle.services.userservice')->index($request);      
         return $this->render('CeisSurveyUsersBundle:CeisSurveyDefault:index.html.twig', array('myForm' => $form->createView()));
     }
 
     public function createUserAction() {
-        
+        return $this->redirect($this->generateUrl('survey_homepage'));
+        /*
         $newUser = new User();
         $newUser->setFname('Girish');
         $newUser->setLname('Taware');
@@ -54,54 +33,21 @@ class CeisSurveyDefaultController extends Controller {
         $em->persist($newUser);
         $em->flush();
 
-        return new Response('Added a new user ' . $newUser->getId());
+        return new Response('Added a new user ' . $newUser->getId());        
+         */
     }
 
     public function getUserAction($id) {
-        $userInfo = $this->getDoctrine()
-                ->getRepository('CeisSurveyUsersBundle:User')
-                ->find($id);
-
-        if ($userInfo) {
-            return new Response('Valid user.');
-        } else {
-            throw $this->createNotFoundException('No user found for id ' . $id);
-        }
+        
+        return $this->get('ceissurvey.usersbundle.services.userservice')->serviceGetUser($id);
     }
     
      public function updateUserAction($id) {
-        $em = $this->getDoctrine()->getManager(); 
-        
-        $userInfo = $em->getRepository('CeisSurveyUsersBundle:User')
-                ->find($id);
-
-        if (!$userInfo) {
-            throw $this->createNotFoundException('No user found for id ' . $id);
-        }
-
-        $userInfo->setUsername('UpdateCall');
-         $em->persist($userInfo);
-        $em->flush();
-        
-        return new Response('The user is updated successfully.');
+         return $this->get('ceissurvey.usersbundle.services.userservice')->serviceUpdateUser($id);
     }
     
      public function deleteUserAction($id) {
-        $em = $this->getDoctrine()->getManager(); 
-        
-        $userInfo = $em->getRepository('CeisSurveyUsersBundle:User')
-                ->find($id);
-
-        if (!$userInfo) {
-            throw $this->createNotFoundException('No user found for id ' . $id);
-        }
-        $fname = $userInfo->getFname();
-        $lname = $userInfo->getLname();
-
-        $em->remove($userInfo);
-        $em->flush();
-        
-        return new Response("The user <b>$fname $lname</b> is deleted successfully.");
+      return $this->get('ceissurvey.usersbundle.services.userservice')->serviceDeleteUser($id);
     }
 
 }
