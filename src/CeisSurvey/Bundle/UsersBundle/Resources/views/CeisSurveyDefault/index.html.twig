@@ -1,38 +1,37 @@
 {% extends '::base.html.twig'%}
 
-{% block body %}
-    <div class="container">
-        
-            <div class="header">
-                <nav>
-                    <ul class="nav nav-pills pull-left">
-                        <li role="utilisateur" class="active"><a href="#">Utilisateur</a></li>
-                        <li role="questionnaire"><a href="#">Questionnaire</a></li>
-                    </ul>
-                </nav>
-             
-            </div>
-            
-        
-        <br><br><br><br>
-        
-        <div class="jumbotron">
-      
-            {{ form_start(myForm)}}
-            {{ form_errors(myForm)}}
-
-
-            {{ form_label(myForm.username)}}
-            {{ form_errors(myForm.username)}}
-            {{ form_widget(myForm.username)}}
-
-
-
-            {{ form_label(myForm.password)}}
-            {{ form_errors(myForm.password)}}
-            {{ form_widget(myForm.password)}}
-
-            {{ form_end(myForm)}}
-        </div>
-    </div>
+{% block body %} 
+    
+{% block form %} 
+    {{ form_start(myForm)}}
+    {{ form_errors(myForm)}}
+   
+    <h1>Sign up </h1> <hr>
+    {{ form_label(myForm.fname)}}
+    {{ form_errors(myForm.fname)}}
+    {{ form_widget(myForm.fname)}}
+    <br>
+    {{ form_label(myForm.lname)}}
+    {{ form_errors(myForm.lname)}}
+    {{ form_widget(myForm.lname)}}
+    <br>
+    {{ form_label(myForm.function)}}
+    {{ form_errors(myForm.function)}}
+    {{ form_widget(myForm.function)}}
+    <br>
+    {{ form_label(myForm.email)}}
+    {{ form_errors(myForm.email)}}
+    {{ form_widget(myForm.email)}}
+    <br>
+    {{ form_label(myForm.username)}}
+    {{ form_errors(myForm.username)}}
+    {{ form_widget(myForm.username)}}
+    <br>
+    {{ form_label(myForm.password)}}
+    {{ form_errors(myForm.password)}}
+    {{ form_widget(myForm.password)}}
+   
+    {{ form_end(myForm)}}
+     <hr>
+{% endblock %}
 {% endblock %}

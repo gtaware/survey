@@ -1,0 +1,23 @@
+{% extends '::base.html.twig'%}
+
+{% block body %} 
+    
+{% if error %}
+    <div>
+        {{ error.message }}
+    </div>
+{% endif %}
+
+<h1>Sign in </h1> <hr>
+
+<form action="{{ path('login_check') }}" method="post">
+    <label for="username">Username : </label>
+    <input type="text" id="username" name="_username" value="{{ last_username }}" />
+    
+    <label for="password">Password : </label>
+    <input type="password" id="password" name="_password" />
+    <br>
+    <button type="submit" class="btn btn-success">Sign in</button>
+</form>
+
+{% endblock %}

@@ -1,7 +1,4 @@
-parameters:
-#    survey_users.example.class: Survey\Bundle\UsersBundle\Example
-
 services:
-#    survey_users.example:
-#        class: %survey_users.example.class%
-#        arguments: [@service_id, "plain_value", %parameter%]
+    ceis_survey.usersbundle.services.users:
+        class: CeisSurvey\Bundle\UsersBundle\Services\UserService
+        arguments: ["@service_container"]

@@ -17,7 +17,7 @@ class AppKernel extends Kernel
             new Doctrine\Bundle\DoctrineBundle\DoctrineBundle(),
             new Sensio\Bundle\FrameworkExtraBundle\SensioFrameworkExtraBundle(),
             new CeisSurvey\Bundle\UsersBundle\CeisSurveyUsersBundle(),
-            new Girish\Bundle\CrudBundle\GirishCrudBundle(),
+            new CeisSurvey\Bundle\SecurityBundle\CeisSurveySecurityBundle(),
         );
 
         if (in_array($this->getEnvironment(), array('dev', 'test'))) {

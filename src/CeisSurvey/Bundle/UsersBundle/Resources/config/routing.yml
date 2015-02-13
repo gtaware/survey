@@ -1,3 +1,23 @@
 survey_homepage:
     path:     /home/
     defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:index}
+    
+survey_createUser:
+    path:     /home/user
+    defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:createUser}
+    methods:   [POST,GET]
+    
+survey_showUser:
+    path:     /home/user/{id}
+    defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:getUser}
+    methods:   [GET]
+    
+survey_updateUser:
+    path:     /home/user/{id}
+    defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:updateUser}
+    methods:   [PUT]
+    
+survey_deleteUser:
+    path:     /home/user/{id}
+    defaults: { _controller: CeisSurveyUsersBundle:CeisSurveyDefault:deleteUser}
+    methods:   [DELETE]
