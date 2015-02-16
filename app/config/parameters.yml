@@ -2,7 +2,7 @@ parameters:
     database_driver: pdo_mysql
     database_host: 127.0.0.1
     database_port: null
-    database_name: 'sf_ceis_survey'
+    database_name: 'sf_demo_survey'
     database_user: root
     database_password: passIT42XKZ-0
     mailer_transport: smtp

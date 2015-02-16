@@ -15,6 +15,7 @@ use Symfony\Component\PropertyAccess\PropertyAccessor;
 use Symfony\Component\PropertyAccess\Tests\Fixtures\Author;
 use Symfony\Component\PropertyAccess\Tests\Fixtures\Magician;
 use Symfony\Component\PropertyAccess\Tests\Fixtures\MagicianCall;
+use Symfony\Component\PropertyAccess\Tests\Fixtures\Ticket5775Object;
 
 class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
 {
@@ -220,6 +221,12 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
         $this->propertyAccessor->getValue('', 'foobar');
     }
 
+    public function testGetValueWhenArrayValueIsNull()
+    {
+        $this->propertyAccessor = new PropertyAccessor(false, true);
+        $this->assertNull($this->propertyAccessor->getValue(array('index' => array('nullable' => null)), '[index][nullable]'));
+    }
+
     public function testSetValueUpdatesArrays()
     {
         $array = array();
@@ -378,5 +385,14 @@ class PropertyAccessorTest extends \PHPUnit_Framework_TestCase
         $propertyAccessor->setValue($object, 'magicProperty', 'foobar');
 
         $this->assertEquals('foobar', $object->getMagicProperty());
+    }
+
+    public function testTicket5755()
+    {
+        $object = new Ticket5775Object();
+
+        $this->propertyAccessor->setValue($object, 'property', 'foobar');
+
+        $this->assertEquals('foobar', $object->getProperty());
     }
 }

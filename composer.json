@@ -21,7 +21,8 @@
         "incenteev/composer-parameter-handler": "~2.0",
         "leafo/lessphp": "~0.3.9",
         "twitter/bootstrap": "*",
-        "components/jquery": "1.9.*@dev"
+        "components/jquery": "1.9.*@dev",
+        "friendsofsymfony/user-bundle":"~2.0@dev"
     },
     "scripts": {
         "post-install-cmd": [

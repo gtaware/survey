@@ -8,4 +8,5 @@ $baseDir = dirname($vendorDir);
 return array(
     'Symfony\\Bundle\\SwiftmailerBundle\\' => array($vendorDir . '/symfony/swiftmailer-bundle'),
     'Monolog\\' => array($vendorDir . '/monolog/monolog/src/Monolog'),
+    'FOS\\UserBundle\\' => array($vendorDir . '/friendsofsymfony/user-bundle'),
 );

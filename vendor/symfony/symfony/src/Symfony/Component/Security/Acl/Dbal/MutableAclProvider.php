@@ -138,7 +138,7 @@ class MutableAclProvider extends AclProvider implements MutableAclProviderInterf
     }
 
     /**
-     * Implementation of PropertyChangedListener
+     * Implementation of PropertyChangedListener.
      *
      * This allows us to keep track of which values have been changed, so we don't
      * have to do a full introspection when ->updateAcl() is called.
@@ -361,7 +361,7 @@ class MutableAclProvider extends AclProvider implements MutableAclProviderInterf
     protected function getDeleteAccessControlEntriesSql($oidPK)
     {
         return sprintf(
-              'DELETE FROM %s WHERE object_identity_id = %d',
+            'DELETE FROM %s WHERE object_identity_id = %d',
             $this->options['entry_table_name'],
             $oidPK
         );
@@ -674,7 +674,7 @@ QUERY;
     }
 
     /**
-     * Creates the ACL for the passed object identity
+     * Creates the ACL for the passed object identity.
      *
      * @param ObjectIdentityInterface $oid
      */
@@ -863,7 +863,6 @@ QUERY;
 
         $sids = new \SplObjectStorage();
         $classIds = new \SplObjectStorage();
-        $currentIds = array();
         for ($i = 0, $c = count($new); $i<$c; $i++) {
             $ace = $new[$i];
 
@@ -890,8 +889,6 @@ QUERY;
                 $aceIdProperty = new \ReflectionProperty($ace, 'id');
                 $aceIdProperty->setAccessible(true);
                 $aceIdProperty->setValue($ace, intval($aceId));
-            } else {
-                $currentIds[$ace->getId()] = true;
             }
         }
     }

@@ -16,7 +16,6 @@ require_once __DIR__.'/Fixtures/includes/ProjectExtension.php';
 
 use Symfony\Component\Config\Resource\ResourceInterface;
 use Symfony\Component\DependencyInjection\Alias;
-use Symfony\Component\DependencyInjection\Compiler\CompilerPassInterface;
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 use Symfony\Component\DependencyInjection\Definition;
@@ -499,10 +498,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddObjectResource()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
 
         $container->setResourceTracking(false);
@@ -529,10 +524,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testAddClassResource()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
 
         $container->setResourceTracking(false);
@@ -559,10 +550,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testCompilesClassDefinitionsOfLazyServices()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
 
         $this->assertEmpty($container->getResources(), 'No resources get registered without resource tracking');
@@ -589,10 +576,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testResources()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
         $container->addResource($a = new FileResource(__DIR__.'/Fixtures/xml/services1.xml'));
         $container->addResource($b = new FileResource(__DIR__.'/Fixtures/xml/services2.xml'));
@@ -683,10 +666,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function testThrowsExceptionWhenAddServiceOnAFrozenContainer()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
         $container->compile();
         $container->set('a', new \stdClass());
@@ -694,10 +673,6 @@ class ContainerBuilderTest extends \PHPUnit_Framework_TestCase
 
     public function testNoExceptionWhenSetSyntheticServiceOnAFrozenContainer()
     {
-        if (!class_exists('Symfony\Component\Config\Resource\FileResource')) {
-            $this->markTestSkipped('The "Config" component is not available');
-        }
-
         $container = new ContainerBuilder();
         $def = new Definition('stdClass');
         $def->setSynthetic(true);

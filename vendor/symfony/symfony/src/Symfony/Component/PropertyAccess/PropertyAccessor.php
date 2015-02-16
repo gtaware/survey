@@ -28,7 +28,7 @@ class PropertyAccessor implements PropertyAccessorInterface
 
     /**
      * Should not be used by application code. Use
-     * {@link PropertyAccess::getPropertyAccessor()} instead.
+     * {@link PropertyAccess::createPropertyAccessor()} instead.
      */
     public function __construct($magicCall = false)
     {
@@ -117,10 +117,15 @@ class PropertyAccessor implements PropertyAccessorInterface
 
             $property = $propertyPath->getElement($i);
             $isIndex = $propertyPath->isIndex($i);
-            $isArrayAccess = is_array($objectOrArray) || $objectOrArray instanceof \ArrayAccess;
 
             // Create missing nested arrays on demand
-            if ($isIndex && $isArrayAccess && !isset($objectOrArray[$property])) {
+            if (
+                $isIndex &&
+                (
+                    ($objectOrArray instanceof \ArrayAccess && !isset($objectOrArray[$property])) ||
+                    (is_array($objectOrArray) && !array_key_exists($property, $objectOrArray))
+                )
+            ) {
                 $objectOrArray[$property] = $i + 1 < $propertyPath->getLength() ? array() : null;
             }
 
@@ -251,7 +256,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     }
 
     /**
-     * Sets the value of the property at the given index in the path
+     * Sets the value of the property at the given index in the path.
      *
      * @param \ArrayAccess|array $array An array or \ArrayAccess object to write to
      * @param string|int         $index The index to write at
@@ -269,7 +274,7 @@ class PropertyAccessor implements PropertyAccessorInterface
     }
 
     /**
-     * Sets the value of the property at the given index in the path
+     * Sets the value of the property at the given index in the path.
      *
      * @param object|array $object   The object or array to write to
      * @param string       $property The property to write
